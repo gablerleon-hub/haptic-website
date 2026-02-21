@@ -1,1 +1,207 @@
-<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>HAPTIC - Official</title><link rel="stylesheet" href="style.css"></head><body><h1>HAPTIC - Official</h1><script src="script.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAPTIC - Official</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Discord Dynamic Island / secondary Notch -->
+    <div class="dynamic-island discord-notch">
+        <div class="notch-content">
+            <div class="recording-dot blue-dot"></div>
+            <button class="follower-btn" title="Discord beitreten"
+                onclick="window.open('https://discord.gg/XZDYvDqGTb', '_blank')">
+                <span class="follower-count" id="live-discord">Lade...</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- TikTok Dynamic Island / Notch -->
+    <div class="dynamic-island tiktok-notch">
+        <div class="notch-content">
+            <div class="recording-dot red-dot"></div>
+            <button class="follower-btn" title="Auf TikTok ansehen"
+                onclick="window.open('https://www.tiktok.com/@hapticofc', '_blank')">
+                <span class="follower-count" id="live-followers">10.742</span>
+            </button>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo" onclick="navigateTo('home')">HAPTIC</div>
+            <div class="nav-links">
+                <button onclick="navigateTo('home')" class="nav-btn active" data-target="home">Start</button>
+                <button onclick="navigateTo('content')" class="nav-btn" data-target="content">Content</button>
+                <button onclick="navigateTo('about')" class="nav-btn" data-target="about">Über Mich</button>
+                <button onclick="navigateTo('socials')" class="nav-btn buy-btn" data-target="socials">Socials</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- View: Home -->
+    <main id="view-home" class="view active-view">
+        <section class="hero">
+            <div class="hero-image-container">
+                <div class="glow-orb orb-1"></div>
+                <div class="glow-orb orb-2"></div>
+            </div>
+            <h1 class="hero-title">☾༒𝓗Λ𝓟𝓣𝓘𝓒༒☽</h1>
+            <p class="hero-subtitle">Hallöchen, ich bin neu hier auf TikTok.<br>Lass doch gerne ein bisschen Liebe da.
+            </p>
+            <div class="cta-container">
+                <button class="cta-btn primary" onclick="navigateTo('content')">Content ansehen</button>
+                <button class="cta-btn secondary" onclick="navigateTo('socials')">Zu den Socials</button>
+            </div>
+        </section>
+
+        <section class="scroll-reveal reveal-1">
+            <div class="reveal-content">
+                <h2>Gaming & VRChat.</h2>
+                <p>Erlebe mit mir virtuelle Welten, lustige Momente und kreative Edits, die unter die Haut gehen.</p>
+            </div>
+        </section>
+
+        <section class="horizontal-scroll">
+            <div class="horizontal-container">
+                <div class="horizontal-item">
+                    <h3>VRChat</h3>
+                    <p>Eintauchen in grenzenlose Welten, neue Leute treffen und verrückte Abenteuer erleben.</p>
+                </div>
+                <div class="horizontal-item">
+                    <h3>Edits & Trends</h3>
+                    <p>Kreative Clips mit CapCut und aktuellen TikTok-Trends, immer mit einem dunklen Twist.</p>
+                </div>
+                <div class="horizontal-item">
+                    <h3>Community</h3>
+                    <p>Ein Ort für alle. Wir lachen, wir spielen und wir wachsen zusammen. Werde Teil davon.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- View: Content -->
+    <main id="view-content" class="view">
+        <section class="page-header">
+            <h1 class="page-title">Meine Highlights.</h1>
+            <p class="page-subtitle">Die besten Momente aus VRChat und meinen Vlogs.</p>
+        </section>
+
+        <section class="product-showcase">
+            <div class="product-card">
+                <div class="product-image placeholder-img">VRChat Clip 1</div>
+                <h3>VRChat Chaos</h3>
+                <p>Wenn die Lobby komplett eskaliert.</p>
+                <div class="product-specs">
+                    <span>Gaming</span>
+                    <span>VRChat</span>
+                    <span>Funny</span>
+                </div>
+                <button class="buy-link" onclick="window.open('https://www.tiktok.com/@hapticofc', '_blank')">Auf TikTok
+                    ansehen</button>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image placeholder-img">Aesthetic Edit</div>
+                <h3>Drip & Dark</h3>
+                <p>Neuster Edit passend zum Vibe.</p>
+                <div class="product-specs">
+                    <span>#dark</span>
+                    <span>#lacki</span>
+                    <span>CapCut</span>
+                </div>
+                <button class="buy-link" onclick="window.open('https://www.tiktok.com/@hapticofc', '_blank')">Auf TikTok
+                    ansehen</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- View: Über Mich -->
+    <main id="view-about" class="view">
+        <section class="page-header dark-header">
+            <h1 class="page-title">Hinter dem Avatar.</h1>
+        </section>
+
+        <section class="features-grid tech-grid">
+            <div class="grid-card">
+                <h4>Wer bin ich?</h4>
+                <p>Ein Gamer und Creator aus Leidenschaft. Ich liebe es, mich in VRChat zu verlieren und Momente
+                    festzuhalten.</p>
+            </div>
+            <div class="grid-card">
+                <h4>Meine Community</h4>
+                <p>Mittlerweile über 10.700 tolle Menschen auf TikTok, die denselben Vibe teilen. Danke für euren
+                    Support!</p>
+            </div>
+            <div class="grid-card">
+                <h4>Der Style</h4>
+                <p>Dunkel, ästhetisch und manchmal etwas verrückt. Das ist der Haptic-Vibe. #dark #lacki</p>
+            </div>
+            <div class="grid-card">
+                <h4>Setup & Gear</h4>
+                <p>VR-Headset auf, Full-Body Tracking an und ab in neue Dimensionen. Immersion ist alles.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- View: Socials -->
+    <main id="view-socials" class="view">
+        <section class="checkout-section">
+            <h1 class="checkout-title">Lass uns connecten.</h1>
+            <div class="checkout-container">
+                <div class="checkout-options">
+                    <div class="option-group">
+                        <h3>Plattformen</h3>
+                        <button class="select-btn active"
+                            onclick="window.open('https://www.tiktok.com/@hapticofc', '_blank')">TikTok (@hapticofc) -
+                            10.7K Follower</button>
+                        <button class="select-btn"
+                            onclick="alert('Weitere Socials würden hier stehen')">Instagram</button>
+                        <button class="select-btn"
+                            onclick="window.open('https://discord.gg/XZDYvDqGTb', '_blank')">Discord Community
+                            Server</button>
+                    </div>
+
+                    <div class="option-group">
+                        <h3>Community Vibe</h3>
+                        <div class="color-picker">
+                            <div class="color-dot" style="background: #1c1c1e;" title="Dark Mode"></div>
+                            <div class="color-dot" style="background: #7a00ff;" title="Purple Neon"></div>
+                            <div class="color-dot" style="background: #ff0055;" title="Red Accent"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkout-summary">
+                    <h3>Unterstütze mich</h3>
+                    <div class="summary-item">
+                        <span>Aktuelles Ziel</span>
+                        <span>15K Follower</span>
+                    </div>
+                    <div class="summary-total">
+                        <span>Status</span>
+                        <span>On the way</span>
+                    </div>
+                    <button class="checkout-action"
+                        onclick="window.open('https://www.tiktok.com/@hapticofc', '_blank')">Folgen auf TikTok</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 ☾༒𝓗Λ𝓟𝓣𝓘𝓒༒☽. Alle Rechte vorbehalten.</p>
+    </footer>
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,770 @@
+:root {
+    --bg-color: #030305;
+    --text-color: #f5f5f7;
+    --text-muted: #8e8e93;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-border-light: rgba(255, 255, 255, 0.15);
+    --glass-blur: blur(40px);
+    --glass-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+    --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.15), inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+    --accent: #ff0055;
+    --nav-bg: rgba(10, 10, 12, 0.4);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg-color);
+    background-image: url('Logo.png');
+    /* Verweist auf D:\anitgraf\webseite\apple_website\Logo.png */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--text-color);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Der echte "iOS Glas"-Hintergrundblur für die gesamte Seite: */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(80px) saturate(150%);
+    -webkit-backdrop-filter: blur(80px) saturate(150%);
+    background: rgba(3, 3, 5, 0.5);
+    /* Dunkeldurchsichtiger Nebel */
+    z-index: -2;
+    pointer-events: none;
+}
+
+/* --- Dynamic Island / Notches --- */
+.dynamic-island {
+    position: fixed;
+    right: 30px;
+    background: rgba(10, 10, 12, 0.4);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    height: 35px;
+    padding: 0 16px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    z-index: 2000;
+    box-shadow: var(--glass-shadow);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-inset), var(--glass-shadow);
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.discord-notch {
+    bottom: 80px;
+    /* Sitzt über der TikTok Notch */
+}
+
+.tiktok-notch {
+    bottom: 30px;
+}
+
+.dynamic-island:hover {
+    height: 42px;
+    padding: 0 22px;
+    background: rgba(20, 20, 25, 0.5);
+    border: 1px solid var(--glass-border-light);
+}
+
+.notch-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.recording-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+.red-dot {
+    background-color: #ff3b30;
+    box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.7);
+}
+
+.blue-dot {
+    background-color: #5865F2;
+    /* Discord Blurple */
+    box-shadow: 0 0 0 0 rgba(88, 101, 242, 0.7);
+    animation: pulse-blue 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 5px rgba(255, 59, 48, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(255, 59, 48, 0);
+    }
+}
+
+@keyframes pulse-blue {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(88, 101, 242, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 5px rgba(88, 101, 242, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(88, 101, 242, 0);
+    }
+}
+
+.follower-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    outline: none;
+}
+
+.tiktok-notch .follower-btn::after {
+    content: 'Follower';
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.discord-notch .follower-btn::after {
+    content: 'Online';
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* --- Navigation --- */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: var(--nav-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    z-index: 1000;
+    border-bottom: 1px solid var(--glass-border);
+    padding-top: 10px;
+}
+
+.nav-content {
+    max-width: 980px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 48px;
+    padding: 0 20px;
+}
+
+.logo {
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+}
+
+.nav-links {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    opacity: 0.7;
+    font-size: 12px;
+    font-family: inherit;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-btn.active {
+    opacity: 1;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.nav-btn.buy-btn {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border-light);
+    color: #fff;
+    font-weight: 600;
+    opacity: 1;
+    border-radius: 20px;
+    padding: 6px 16px;
+    margin-left: 10px;
+    box-shadow: var(--glass-shadow);
+}
+
+.nav-btn.buy-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+/* --- Views System --- */
+.view {
+    display: none;
+    min-height: 100vh;
+    padding-top: 50px;
+    /* Offset für Navbar */
+}
+
+.view.active-view {
+    display: block;
+}
+
+/* --- Home / Hero --- */
+section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.hero {
+    text-align: center;
+    overflow: hidden;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 6vw, 6rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    background: linear-gradient(180deg, #ffffff 0%, #86868b 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    z-index: 10;
+}
+
+.hero-subtitle {
+    margin-top: 24px;
+    font-size: clamp(1.2rem, 2vw, 1.8rem);
+    color: var(--text-muted);
+    font-weight: 400;
+    z-index: 10;
+}
+
+/* Buttons (CTA) */
+.cta-container {
+    margin-top: 40px;
+    display: flex;
+    gap: 20px;
+    z-index: 10;
+}
+
+.cta-btn {
+    padding: 14px 28px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+}
+
+.cta-btn.primary {
+    background: rgba(255, 0, 85, 0.8);
+    /* Accent Color mit Transparenz */
+    color: white;
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid rgba(255, 85, 140, 0.4);
+    box-shadow: var(--glass-shadow), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.cta-btn.primary:hover {
+    background: rgba(255, 0, 85, 1);
+    border-color: rgba(255, 85, 140, 0.8);
+    box-shadow: 0 8px 25px rgba(255, 0, 85, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.cta-btn.secondary {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow), var(--glass-inset);
+}
+
+.cta-btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--glass-border-light);
+}
+
+/* Orbs */
+.hero-image-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.5;
+}
+
+.orb-1 {
+    width: 50vw;
+    height: 50vw;
+    max-width: 600px;
+    background: #7a00ff;
+    top: 10%;
+    left: 10%;
+}
+
+.orb-2 {
+    width: 60vw;
+    height: 60vw;
+    max-width: 600px;
+    background: #ff0055;
+    bottom: 10%;
+    right: 10%;
+}
+
+/* --- Scroll Sections (Home) --- */
+.scroll-reveal {
+    text-align: center;
+    max-width: 900px;
+    padding: 0 40px;
+}
+
+.scroll-reveal h2 {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+}
+
+.scroll-reveal p {
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+.horizontal-scroll {
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+
+.horizontal-container {
+    display: flex;
+    width: 300vw;
+    height: 100vh;
+}
+
+.horizontal-item {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10vw;
+    position: relative;
+}
+
+/* Glasscard für den Text im Horizontal Scroll, damit es auf Orbs lesbar bleibt */
+.horizontal-item::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 10vw;
+    width: 80vw;
+    height: 40vh;
+    transform: translateY(-50%);
+    background: rgba(20, 20, 25, 0.3);
+    backdrop-filter: blur(60px);
+    -webkit-backdrop-filter: blur(60px);
+    z-index: -1;
+    border-radius: 40px;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+}
+
+.horizontal-item h3 {
+    font-size: clamp(4rem, 8vw, 7rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, #fff, #666);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.horizontal-item p {
+    font-size: clamp(1.2rem, 3vw, 2.5rem);
+    color: var(--text-muted);
+    font-weight: 500;
+    max-width: 800px;
+    line-height: 1.3;
+}
+
+/* --- Sub-Pages (Produkte & Tech) --- */
+.page-header {
+    min-height: 40vh;
+    padding-top: 100px;
+    align-items: center;
+    text-align: center;
+}
+
+.page-title {
+    font-size: 4rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+}
+
+.page-subtitle {
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    margin-top: 15px;
+}
+
+/* Grid / Cards */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 40px 20px;
+    min-height: auto;
+}
+
+.product-showcase {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    min-height: auto;
+}
+
+.product-card,
+.grid-card {
+    background: var(--glass-bg);
+    border-radius: 32px;
+    padding: 40px;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow), var(--glass-inset);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), background 0.5s, border 0.5s;
+}
+
+.product-card {
+    width: 400px;
+    text-align: center;
+}
+
+.product-card:hover,
+.grid-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--glass-border-light);
+}
+
+.placeholder-img {
+    height: 200px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-weight: 600;
+    font-size: 1.2rem;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.product-card h3 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.product-card p {
+    color: var(--text-muted);
+    margin-bottom: 25px;
+}
+
+.product-specs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.product-specs span {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ccc;
+}
+
+.buy-link {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    border: 1px solid var(--glass-border);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    padding: 12px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s ease;
+    box-shadow: var(--glass-inset);
+}
+
+.buy-link:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--glass-border-light);
+    transform: scale(1.02);
+}
+
+.grid-card h4 {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.grid-card p {
+    color: var(--text-muted);
+    line-height: 1.5;
+    font-size: 1rem;
+}
+
+/* --- Checkout / Kaufen --- */
+.checkout-section {
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 100px 20px 40px;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.checkout-title {
+    font-size: 3rem;
+    margin-bottom: 50px;
+}
+
+.checkout-container {
+    display: flex;
+    gap: 60px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.checkout-options {
+    flex: 2;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.option-group h3 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+}
+
+.select-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    color: white;
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 1.1rem;
+    box-shadow: var(--glass-shadow), var(--glass-inset);
+}
+
+.select-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--glass-border-light);
+    transform: translateY(-2px);
+}
+
+.select-btn.active {
+    background: rgba(255, 0, 85, 0.15);
+    border-color: rgba(255, 0, 85, 0.5);
+    border-width: 1px;
+}
+
+.color-picker {
+    display: flex;
+    gap: 15px;
+}
+
+.color-dot {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 0 2px transparent, inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+    transition: 0.2s;
+}
+
+.color-dot:hover {
+    transform: scale(1.1);
+}
+
+.color-dot:nth-child(2) {
+    box-shadow: 0 0 0 2px var(--accent);
+}
+
+/* Active state mockup */
+
+.checkout-summary {
+    flex: 1;
+    min-width: 300px;
+    background: var(--glass-bg);
+    padding: 30px;
+    border-radius: 32px;
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow), var(--glass-inset);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+}
+
+.checkout-summary h3 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    color: var(--text-muted);
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.checkout-action {
+    width: 100%;
+    background: rgba(255, 0, 85, 0.8);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid rgba(255, 85, 140, 0.5);
+    color: white;
+    padding: 16px;
+    border-radius: 20px;
+    margin-top: 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: var(--glass-shadow), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.checkout-action:hover {
+    background: rgba(255, 0, 85, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 0, 85, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+/* --- Footer --- */
+.footer {
+    text-align: center;
+    padding: 30px;
+    color: var(--text-muted);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 12px;
+    width: 100%;
+}
